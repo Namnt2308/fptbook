@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <!--fonts-->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,400;1,500;1,600;1,700;&display=swap" rel="stylesheet"> -->
+
+    <title>Admin Dashboard!</title>
+</head>
+
+<body>
+
+    <div class="page-container">
+        <div class="page-sidebar-wrapper">
+            <div class="sidebar">
+                <div class="logo">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <img src="https://fpt-fti.com/wp-content/uploads/2020/12/LogoFPT.png" alt="logo" class="logo-img mr-3">
+                        <div class="logo-text">
+                            FPTBOOK
+                        </div>
+                    </div>
+                </div>
+                <div class="user-info d-flex">
+                    <div>
+                        <img src="https://cdn3.vectorstock.com/i/1000x1000/30/97/flat-business-man-user-profile-avatar-icon-vector-4333097.jpg" alt="user-img" class="user-img">
+                    </div>
+                    <div class="d-flex flex-column">
+                        
+                        <p>Namntgch190885@fpt.edu.vn</p>
+                    </div>
+                </div>
+                <ul class="nav flex-column menu-link">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link"><i class="fal fa-book book-icn"> </i>
+                            <p class="text-icn"> Dashboard</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Customers</a>
+                    </li>
+                    <li class="nav-item text-light"> <a class="nav-link" href="/admin/sapxeptang">UP</a></li>
+                    <li class="nav-item text-light"><a class="nav-link" href="/admin/sapxepgiam">Down</a></li>
+                    <li class="nav-item">
+                        <a href="/admin/addbook" class="nav-link">Add Book</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="page-content-wrapper">
+            <div class="page-content">
+                <div class="top-bar d-flex justify-content-between align-items-center">
+                    <div class="d-flex align-items-center">
+                        <div>
+                            <img src="/public/image/menu.svg" alt="menu" onclick="toggle()" class="toggler">
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="inner-section">
+                    <h2 class="page-title">Manage book</h2>
+                    <a href="/admin/addbook" class="btn btn-primary">Add Book</a>
+                        <form method="POST" action="/admin/search"class="mt-2 col-md-10 px-0">
+                            <input type="text" class="form-control" list="title_product"  name="txtName"placeholder="Enter name product">
+                        </form>
+                        </div>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Products ID</th>
+                                                <th>Products Name</th>
+                                                <th>Price</th>
+                                                <th>Image</th>
+                                                <th>Description</th>
+                                                <!-- <th>Status</th> -->
+                                                <th>Menu</th>
+                                                <th>Menu</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each book}}
+                                            <tr>
+                                                <td>{{_id}}</td>
+                                                <td>{{name}}</td>
+                                                <td>{{price}}$</td>
+                                                <td>
+                                                    <div class="image"><img style="width: 100px; height: 100px"  src="{{pic}}" alt=""></div>
+                                                </td>
+                                                <td>{{des}}</td>
+                                                <td class="Upadte"><a class="btn btn-success" style="margin-right:5px;flex:1" href="/admin/updatebook?id={{_id}}">Edit</a> </td>
+                                                <td class="Delete"><a class="btn btn-danger" style="margin-right:5px;flex:1" onclick="return confirm('Are your sure?')" href="/admin/deletebook?id={{_id}}">Delete</a></td>
+                                            </tr>
+                                            {{/each}}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script>
+
+        function toggle() {
+            $('.sidebar').toggleClass('active');
+            $('.page-content-wrapper').toggleClass('active');
+        }
+
+        $(document).ready(function () {
+            $(window).bind('resize', function () {
+                if ($(this).width() < 992) {
+                    $('.sidebar,.page-content-wrapper').addClass('active');
+                    $('.search-bar,.toggler').hide();
+                } else {
+                    $('.sidebar,.page-content-wrapper').removeClass('active');
+                    $('.search-bar,.toggler').show();
+                }
+            }).trigger('resize');
+        });
+
+    </script>
+</body>
+
+</html>

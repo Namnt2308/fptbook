@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+  <!-- font awesome cdn link  -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <link rel="stylesheet" href="shoppingCart.css" media="screen" title="no title" charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <meta name="robots" content="noindex,follow" />
+</head>
+
+<body>
+
+  <!-- header section starts  -->
+
+  <header class="header">
+
+    <div class="header-1">
+
+      <a href="/" class="logo"> <i class="fas fa-book"></i> FPTBook </a>
+
+      <form action="/search?=" class="search-form" method="get">
+        <input type="search" name="searchInput" placeholder="search here..." id="searchInput">
+        <a href="/search"><button><i class="fas fa-search"></i></button></i></a>
+      </form>
+
+      <div class="icons">
+        <div id="search-btn" class="fas fa-search"></div>
+        <a href="#" class="fas fa-heart"></a>
+        <a href="/shoppingCart/viewCart" class="fas fa-shopping-cart"></a>
+        <div id="login-btn" class="fas fa-user">
+          <span class="header__navbar-user-name">{{user.name}}</span>
+
+        </div>
+        <a href="/logout"><i class="fas fa-sign-out-alt"></i></a>
+
+      </div>
+
+
+    </div>
+
+    <div class="header-2">
+      <nav class="navbar">
+        <a href="/">home</a>
+        
+
+      </nav>
+    </div>
+
+  </header>
+  <!-- <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top py-2"></nav>
+  <div class="shopvard"> -->
+  <div class="far"></div>
+  <div class="container">
+    <table class="table-hover table-striped">
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+      </tr>
+      {{#each order.books}}
+      <tr>
+        <td>
+          <div class="card-infor">
+            <img src="{{pic}}" alt="">
+            <div class="description">
+              <p>{{name}}</p>
+              <small>price: {{price}}</small><br>
+              <button type="button" onclick="return confirm('Are you sure to remove this book?')"><a href="/shoppingCart/delete?id={{_id}}">remove</a></button>
+              
+            </div>
+          </div>
+        </td>
+        <td>{{qty}}</td>
+        <td>{{money}}</td>
+      </tr>
+      {{/each}}
+    </table>
+    <div class="total-price">
+      <table class="table-striped ">
+        <tr>
+          <td>Total</td>
+          <td>{{order.totalPrice}}</td>
+
+        </tr>
+        <tr>
+          <td><a href="/shoppingCart/payCart"><button type="submit" class="btn" onclick="return confirm('Are you sure to pay cart?')">Proceed to Pay</button></a></td>
+
+        </tr>
+      </table>
+    </div>
+  </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+
+</body>
+
+</html>

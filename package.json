@@ -1,0 +1,30 @@
+{
+  "name": "demomvc2",
+  "version": "1.0.0",
+  "main": "app.js",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.2",
+    "express-handlebars": "^6.0.3",
+    "express-session": "^1.17.2",
+    "hbs": "^4.2.0",
+    "mongodb": "^4.3.0",
+    "mongoose": "^6.1.7"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sonhan14/Application-Development-Group2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sonhan14/Application-Development-Group2/issues"
+  },
+  "homepage": "https://github.com/sonhan14/Application-Development-Group2#readme",
+  "description": ""
+}

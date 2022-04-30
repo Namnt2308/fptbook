@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Product Card/Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="header.css">
+<link rel="stylesheet" href="product_Detail.css">
+ <link rel="stylesheet" href="feedback.css">
+
+
+   
+
+</head>
+
+<body>
+
+    <div class="Headerz">
+        <nav>
+            <input type="checkbox" id="show-search">
+            <input type="checkbox" id="show-menu">
+            <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
+            <div class="content">
+                <div class="logo"><a href="/">FPTBOOK</a></div>
+                <ul class="links">
+                    <li><a href="/">Home</a></li>
+                </ul>
+            </div>
+
+        </nav>
+    </div>
+
+
+
+    </div>
+    <div class="card-wrapper">
+        <div class="card">
+            <!-- card left -->
+            <div class="product-imgs">
+                <div class="img-display">
+                    <div class="img-showcase">
+                        <img src="{{details.pic}}" alt="">
+                    </div>
+                </div>
+
+            </div>
+            <!-- card right -->
+            <div class="product-content">
+                <h2 class="product-title">{{details.name}}</h2>
+                <a href="/" class="product-link">visit FPTBOOK</a>
+                <div class="product-rating">
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span>4.7(21)</span>
+                </div>
+
+                <div class="product-price">
+                    <p class="last-price">Old Price: <span>$100</span></p>
+                    <p class="new-price">New Price: <span>{{details.price}} $</span></p>
+                </div>
+
+                <div class="product-detail">
+                    <h2>about this item: </h2>
+                    <p>{{details.des}}</p>
+                    <ul>
+                        <li>Available: <span>in stock</span></li>
+                        <li>Category: <span>{{category.name}}</span></li>
+                        <li>Shipping Area: <span>All over the world</span></li>
+                        <li>Shipping Fee: <span>Free</span></li>
+                    </ul>
+                </div>
+
+                <div class="purchase-info">
+                    <form action="/shoppingCart" method="POST"
+                        onsubmit="return confirm('Are you sure to buy this book?')">
+                        <input type="hidden" name="bookID" value="{{details._id}}">
+                        <button type="submit" class="btn">
+                            Add to Cart <i class="fas fa-shopping-cart"></i>
+                        </button>
+                        <a href="/shoppingCart/viewCart"><button type="button" class="btn">View Cart</button></a>
+                        <a href="/feedback?id={{details._id}}"><button type="button" class="btn">
+                                Feedback</button></a>
+                    </form>
+
+                </div>
+
+                <div class="social-links">
+                    <p>Share At: </p>
+                    <a href="#">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fab fa-pinterest"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        searchForm = document.querySelector(".search-form");
+
+        document.querySelector("#search-btn").onclick = () => {
+            searchForm.classList.toggle("active");
+        };
+
+        let loginForm = document.querySelector(".login-form-container");
+
+        document.querySelector("#login-btn").onclick = () => {
+            loginForm.classList.toggle("active");
+        };
+
+        document.querySelector("#close-login-btn").onclick = () => {
+            loginForm.classList.remove("active");
+        };
+
+        window.onscroll = () => {
+            searchForm.classList.remove("active");
+
+            if (window.scrollY > 80) {
+                document.querySelector(".header .header-2").classList.add("active");
+            } else {
+                document.querySelector(".header .header-2").classList.remove("active");
+            }
+        };
+
+        window.onload = () => {
+            if (window.scrollY > 80) {
+                document.querySelector(".header .header-2").classList.add("active");
+            } else {
+                document.querySelector(".header .header-2").classList.remove("active");
+            }
+
+            fadeOut();
+        };
+
+        function loader() {
+            document.querySelector(".loader-container").classList.add("active");
+        }
+
+        function fadeOut() {
+            setTimeout(loader, 4000);
+        }
+
+        var swiper = new Swiper(".books-slider", {
+            loop: true,
+            centeredSlides: true,
+            autoplay: {
+                delay: 9500,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                },
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            },
+        });
+
+        var swiper = new Swiper(".featured-slider", {
+            spaceBetween: 10,
+            loop: true,
+            centeredSlides: true,
+            autoplay: {
+                delay: 9500,
+                disableOnInteraction: false,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                },
+                450: {
+                    slidesPerView: 2,
+                },
+                768: {
+                    slidesPerView: 3,
+                },
+                1024: {
+                    slidesPerView: 4,
+                },
+            },
+        });
+
+        var swiper = new Swiper(".arrivals-slider", {
+            spaceBetween: 10,
+            loop: true,
+            centeredSlides: true,
+            autoplay: {
+                delay: 9500,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                },
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            },
+        });
+
+        var swiper = new Swiper(".reviews-slider", {
+            spaceBetween: 10,
+            grabCursor: true,
+            loop: true,
+            centeredSlides: true,
+            autoplay: {
+                delay: 9500,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                },
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            },
+        });
+
+        var swiper = new Swiper(".blogs-slider", {
+            spaceBetween: 10,
+            grabCursor: true,
+            loop: true,
+            centeredSlides: true,
+            autoplay: {
+                delay: 9500,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1,
+                },
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            },
+        });
+
+    </script>
+</body>
+
+</html>

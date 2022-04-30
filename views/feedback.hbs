@@ -1,0 +1,98 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="header.css">
+  <link rel="stylesheet" href="feedback.css">
+  <title>Feedback</title>
+</head>
+
+<body>
+  <div class="Headerz">
+    <nav>
+      <input type="checkbox" id="show-search">
+      <input type="checkbox" id="show-menu">
+      <label for="show-menu" class="menu-icon"><i class="fas fa-bars"></i></label>
+      <div class="content">
+        <div class="logo"><a href="header.css">FPTBOOK</a></div>
+        <ul class="links">
+          <li><a href="/">Home</a></li>
+
+        </ul>
+      </div>
+
+    </nav>
+  </div>
+
+  <div class="card-wrapper">
+    <div class="card">
+      <!-- card left -->
+      <div class="product-imgs">
+        <div class="img-display">
+          <div class="img-showcase">
+              <img src="{{info.pic}}" alt="image product">
+          </div>
+        </div>
+      </div>
+
+      </div>
+      <!-- card right -->
+      <div class="product-content">
+        <h2 class="product-title">{{info.name}}</h2>
+        <a href="/" class="product-link">visit FPTBOOK</a>
+        <div class="product-rating">
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="far fa-star"></i>
+          <i class="fas fa-star-half-alt"></i>
+          <span>4.7(21)</span>
+        </div>
+
+        <div class="product-price">
+          <p class="last-price">Old Price: <span>$110</span></p>
+          <p class="new-price">New Price: <span>{{info.price}}</span></p>
+        </div>
+        <div class="purchase-info">
+          <form action="/shoppingCart" method="POST" onsubmit="return confirm('Are you sure to buy this book?')">
+            <input type="hidden" name="bookID" value="{{details._id}}">
+            <button type="submit" class="btn">
+              Add to Cart <i class="fas fa-shopping-cart"></i>
+            </button>
+            <a href="/shoppingCart/viewCart"><button type="button" class="btn">View Cart</button></a>
+          </form>
+        <form action="/feedback/sendfeedback" method="post">
+        
+            <span>Feedback</span><br><br>
+                <input type="text" name="name" value="{{info.name}}" hidden>
+                <input type="text" name="txtFeedback" class="box" placeholder="Feedback" id="txtFeedback"style="width:300px; padding:20px">
+                <button type="submit" value="sendFeedback" class="btn"> <a href="/"></a> Submit </button>
+        </form>
+
+          <table>
+            <thead>
+              <th>Username</th>
+              <th>Product</th>
+              <th>Feedback</th>
+            </thead>
+            <tbody>
+              {{#each list}}
+              <tr>
+                <td>{{username}}</td>
+                <td>{{name}}</td>
+                <td>{{feedback}}</td>
+
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>

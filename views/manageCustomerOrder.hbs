@@ -1,0 +1,46 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <title>manageCustomerOrder</title>
+</head>
+
+<body style="margin: 0;">
+  <div class="text-center">
+    <h1 class="m-1">Order management</h1>
+    {{#if next}}
+    <a href="/admin/manageCustomerOrder/today">Today</a>
+    <br><br>
+    <a href="/admin/manageCustomerOrder/week">7 days ago</a>
+    {{else}}
+    <a href="/admin/manageCustomerOrder">Previous</a>
+    {{/if}}
+  </div>
+  <div class="flexbox" style="margin-top: 1rem;">
+    <table>
+      <thead>
+        <tr>
+          <th class="text-center" style="width: 40%;">Name</th>
+          <th class="text-center">Order</th>
+          <th class="text-center">Time</th>
+          <th class="text-center">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each demo}}
+        <tr>
+          <td>{{name}}</td>
+          <td>{{item}}</td>
+          <td class="text-center">{{time}}</td>
+          <td class="text-center"><a href="/admin/manageCustomerOrder/delete?id={{_id}}">Cancel order</a></td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</body>
+
+</html>
